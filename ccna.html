@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -110,10 +111,12 @@
             color: white;
         }
 
-        /* Sticky Sidebar */
-        .sidebar-card {
-            position: sticky;
-            top: 100px;
+        /* Sticky Sidebar - Desktop Only */
+        @media (min-width: 1024px) {
+            .sidebar-card {
+                position: sticky;
+                top: 100px;
+            }
         }
 
         /* Curriculum Accordion */
@@ -162,7 +165,7 @@
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 70px; height: 70px;
+            width: 60px; height: 60px;
             background: rgba(255, 255, 255, 0.9);
             border-radius: 50%;
             display: flex;
@@ -187,6 +190,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 1rem;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
@@ -196,7 +200,7 @@
         .modal-content {
             background: white;
             border-radius: 20px;
-            width: 90%;
+            width: 100%;
             max-width: 420px;
             padding: 2rem;
             position: relative;
@@ -204,6 +208,8 @@
             transition: transform 0.3s ease;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             text-align: center;
+            max-height: 90vh;
+            overflow-y: auto;
         }
         .modal-overlay.active .modal-content { transform: scale(1); }
         
@@ -257,73 +263,142 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between">
                 <!-- Logo -->
-                <a href="#" class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gradient-to-br from-secondary to-primary rounded-xl flex items-center justify-center">
-                        <span class="text-white font-display font-bold text-lg">GW</span>
+                <a href="#" class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                    <div class="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-secondary to-primary rounded-xl flex items-center justify-center">
+                        <span class="text-white font-display font-bold text-base sm:text-lg">GW</span>
                     </div>
-                    <span class="text-white font-display font-bold text-xl">GWIT</span>
+                    <span class="text-white font-display font-bold text-lg sm:text-xl">GWIT</span>
                 </a>
                 
-                <!-- Navigation -->
-                <nav class="hidden md:flex items-center gap-6">
-                    <a href="https://emaxdhanbad.github.io/gwit/" class="text-white/80 hover:text-white transition-colors font-medium text-sm">🔙 Back to Home Page</a>
-                </nav>
+                <!-- Navigation - Visible on all devices now -->
+                <nav class="flex items-center gap-2 sm:gap-4">
+                    <a href="https://emaxdhanbad.github.io/gwit/" class="text-white/80 hover:text-white transition-colors font-medium text-xs sm:text-sm">
+                        🔙 Home
+                    </a>
 
-                <a href="tel:7858838866" class="hidden sm:flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full hover:bg-white hover:text-primary transition-all font-medium text-sm">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-                    7858838866
-                </a>
+                    <a href="tel:7858838866" class="flex items-center gap-1 sm:gap-2 bg-white/10 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:bg-white hover:text-primary transition-all font-medium text-xs sm:text-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        <span class="hidden sm:inline">7858838866</span>
+                        <span class="sm:hidden">Call</span>
+                    </a>
+                </nav>
             </div>
         </div>
     </header>
 
     <!-- Page Header -->
-    <section class="bg-primary pt-32 pb-20 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-primary to-cyan-900 opacity:50"></div>
+    <section class="bg-primary pt-28 sm:pt-32 pb-12 sm:pb-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary to-cyan-900 opacity-50"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex items-center gap-2 text-white/60 text-sm mb-4">
+            <div class="flex items-center gap-2 text-white/60 text-xs sm:text-sm mb-3 sm:mb-4 overflow-x-auto whitespace-nowrap">
                 <a href="#" class="hover:text-white transition-colors">Home</a>
                 <span>/</span>
                 <a href="#" class="hover:text-white transition-colors">Courses</a>
                 <span>/</span>
                 <span class="text-white">CCNA</span>
             </div>
-            <h1 class="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
+            <h1 class="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-3 sm:mb-4">
                 Cisco CCNA 200-301 Complete Course
             </h1>
-            <p class="text-gray-300 text-lg max-w-3xl mb-6">
+            <p class="text-gray-300 text-base sm:text-lg max-w-3xl mb-4 sm:mb-6">
                 Master Networking Fundamentals, IP Connectivity, Security, and Automation. Get certified and start your career as a Network Engineer.
             </p>
-            <div class="flex flex-wrap items-center gap-4 text-white/80 text-sm">
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-white/80 text-xs sm:text-sm">
                 <div class="flex items-center gap-1">
-                    <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                     <span>4.9 (3,200 ratings)</span>
                 </div>
                 <span class="w-1 h-1 bg-white/40 rounded-full"></span>
                 <span>15,800 Students Enrolled</span>
-                <span class="w-1 h-1 bg-white/40 rounded-full"></span>
-                <span>Last Updated: Jan 2026</span>
+                <span class="w-1 h-1 bg-white/40 rounded-full hidden sm:block"></span>
+                <span class="hidden sm:block">Last Updated: Jan 2026</span>
             </div>
         </div>
     </section>
 
     <!-- Main Content -->
-    <section class="py-12 bg-gray-50">
+    <section class="py-8 sm:py-12 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-3 gap-8">
+            
+            <!-- Responsive Grid / Flex Layout -->
+            <!-- Uses flex-col on mobile, grid on desktop. Order is swapped on mobile. -->
+            <div class="flex flex-col lg:grid lg:grid-cols-3 gap-8">
                 
-                <!-- Left Column (Course Details) -->
-                <div class="lg:col-span-2 space-y-8">
+                <!-- RIGHT Column (Sticky Sidebar) - MOVED UP FOR MOBILE -->
+                <!-- Order 1 on mobile (top), Order 2 on desktop (right) -->
+                <div class="lg:col-span-1 order-1 lg:order-2">
+                    <div class="sidebar-card bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+                        <!-- Video Preview -->
+                        <div class="relative aspect-video bg-gray-900">
+                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop" alt="CCNA Course Preview" class="w-full h-full object-cover opacity-80">
+                            <div class="play-btn">
+                                <svg class="w-6 h-6 sm:w-8 sm:h-8 text-primary ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                            <div class="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">Preview Available</div>
+                        </div>
+
+                        <div class="p-5 sm:p-6">
+                            <!-- Price -->
+                            <div class="flex items-baseline gap-3 mb-4">
+                                <span class="text-3xl sm:text-4xl font-bold text-primary">₹5,999</span>
+                                <span class="text-lg sm:text-xl text-gray-400 line-through">₹15,999</span>
+                                <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded">63% OFF</span>
+                            </div>
+                            
+                            <div class="flex items-center gap-2 text-red-600 text-xs sm:text-sm font-medium mb-5 sm:mb-6">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span>Offer ends in 2 days!</span>
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="space-y-3 mb-6">
+                                <!-- Updated Buy Now Button -->
+                                <button onclick="openPaymentModal()" class="btn-primary text-sm sm:text-base">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                                    Buy Now
+                                </button>
+                                <button class="btn-secondary text-sm sm:text-base">
+                                    Enroll Now
+                                </button>
+                            </div>
+
+                            <!-- Guarantees -->
+                            <div class="border-t border-gray-100 pt-4 space-y-3">
+                                <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-600">
+                                    <svg class="w-5 h-5 text-emerald-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                    <span>30-Day Money-Back Guarantee</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-600">
+                                    <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    <span>EMI Options Available</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-600">
+                                    <svg class="w-5 h-5 text-amber-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                                    <span>Certificate Included</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 text-center">
+                                <p class="text-xs text-gray-500">Have questions?</p>
+                                <a href="tel:7858838866" class="text-sm font-semibold text-accent hover:underline">Call us: 7858838866</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LEFT Column (Course Details) - MOVED DOWN FOR MOBILE -->
+                <!-- Order 2 on mobile (bottom), Order 1 on desktop (left) -->
+                <div class="lg:col-span-2 order-2 lg:order-1 space-y-8">
                     
                     <!-- Created By -->
-                    <div class="bg-white p-6 rounded-2xl shadow-sm">
-                        <h3 class="font-display text-lg font-semibold text-primary mb-4">Created By</h3>
+                    <div class="bg-white p-5 sm:p-6 rounded-2xl shadow-sm">
+                        <h3 class="font-display text-base sm:text-lg font-semibold text-primary mb-4">Created By</h3>
                         <div class="flex items-center gap-4">
-                            <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Instructor" class="w-16 h-16 rounded-full border-2 border-gray-100">
+                            <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="Instructor" class="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-2 border-gray-100">
                             <div>
-                                <h4 class="font-semibold text-gray-800 text-lg">Mr. Sanjay Gupta</h4>
-                                <p class="text-gray-500 text-sm">Network Solutions Architect & CCIE Certified</p>
-                                <div class="flex gap-4 mt-1 text-sm text-gray-600">
+                                <h4 class="font-semibold text-gray-800 text-base sm:text-lg">Mr. Sanjay Gupta</h4>
+                                <p class="text-gray-500 text-xs sm:text-sm">Network Solutions Architect & CCIE Certified</p>
+                                <div class="flex flex-wrap gap-x-4 gap-y-1 mt-1 text-xs sm:text-sm text-gray-600">
                                     <span class="flex items-center gap-1"><svg class="w-4 h-4 text-secondary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> 4.9 Rating</span>
                                     <span>10 Courses</span>
                                     <span>60,000+ Students</span>
@@ -333,9 +408,9 @@
                     </div>
 
                     <!-- Description -->
-                    <div class="bg-white p-6 rounded-2xl shadow-sm">
-                        <h3 class="font-display text-xl font-semibold text-primary mb-4">Description</h3>
-                        <div class="prose text-gray-600 space-y-4">
+                    <div class="bg-white p-5 sm:p-6 rounded-2xl shadow-sm">
+                        <h3 class="font-display text-lg sm:text-xl font-semibold text-primary mb-4">Description</h3>
+                        <div class="prose text-gray-600 space-y-4 text-sm sm:text-base">
                             <p>This course is your complete guide to the new CCNA 200-301 exam. Whether you are new to networking or looking to validate your skills with a certification, this course covers everything you need to pass the exam on your first attempt.</p>
                             <p>We cover Network Fundamentals, Network Access, IP Connectivity, IP Services, Security Fundamentals, and Automation and Programmability. You will gain hands-on experience using Cisco Packet Tracer labs.</p>
                             <p class="font-semibold text-primary">Why choose this course?</p>
@@ -349,40 +424,40 @@
                     </div>
 
                     <!-- What You'll Learn -->
-                    <div class="bg-white p-6 rounded-2xl shadow-sm">
-                        <h3 class="font-display text-xl font-semibold text-primary mb-4">What you'll learn</h3>
-                        <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-white p-5 sm:p-6 rounded-2xl shadow-sm">
+                        <h3 class="font-display text-lg sm:text-xl font-semibold text-primary mb-4">What you'll learn</h3>
+                        <div class="grid md:grid-cols-2 gap-3 sm:gap-4">
                             <div class="flex gap-3">
                                 <svg class="w-5 h-5 text-secondary mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                <span class="text-gray-700">Configure and troubleshoot Cisco Routers & Switches</span>
+                                <span class="text-gray-700 text-sm sm:text-base">Configure and troubleshoot Cisco Routers & Switches</span>
                             </div>
                             <div class="flex gap-3">
                                 <svg class="w-5 h-5 text-secondary mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                <span class="text-gray-700">Master IP Addressing & Subnetting (IPv4/IPv6)</span>
+                                <span class="text-gray-700 text-sm sm:text-base">Master IP Addressing & Subnetting (IPv4/IPv6)</span>
                             </div>
                             <div class="flex gap-3">
                                 <svg class="w-5 h-5 text-secondary mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                <span class="text-gray-700">Implement VLANs, STP, and EtherChannel</span>
+                                <span class="text-gray-700 text-sm sm:text-base">Implement VLANs, STP, and EtherChannel</span>
                             </div>
                             <div class="flex gap-3">
                                 <svg class="w-5 h-5 text-secondary mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                <span class="text-gray-700">Understand OSPF Routing Protocol</span>
+                                <span class="text-gray-700 text-sm sm:text-base">Understand OSPF Routing Protocol</span>
                             </div>
                             <div class="flex gap-3">
                                 <svg class="w-5 h-5 text-secondary mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                <span class="text-gray-700">Network Security & VPN Configuration</span>
+                                <span class="text-gray-700 text-sm sm:text-base">Network Security & VPN Configuration</span>
                             </div>
                             <div class="flex gap-3">
                                 <svg class="w-5 h-5 text-secondary mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                <span class="text-gray-700">Automation with Ansible & REST APIs</span>
+                                <span class="text-gray-700 text-sm sm:text-base">Automation with Ansible & REST APIs</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Requirements -->
-                    <div class="bg-white p-6 rounded-2xl shadow-sm">
-                        <h3 class="font-display text-xl font-semibold text-primary mb-4">Requirements</h3>
-                        <ul class="space-y-3 text-gray-600">
+                    <div class="bg-white p-5 sm:p-6 rounded-2xl shadow-sm">
+                        <h3 class="font-display text-lg sm:text-xl font-semibold text-primary mb-4">Requirements</h3>
+                        <ul class="space-y-3 text-gray-600 text-sm sm:text-base">
                             <li class="flex gap-3">
                                 <svg class="w-5 h-5 text-gray-400 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                                 <span>Basic computer literacy and internet usage.</span>
@@ -399,10 +474,10 @@
                     </div>
 
                     <!-- Recently Enrolled Students Section -->
-                    <div class="bg-white p-6 rounded-2xl shadow-sm">
+                    <div class="bg-white p-5 sm:p-6 rounded-2xl shadow-sm">
                         <div class="flex items-center justify-between mb-4">
-                            <h3 class="font-display text-lg font-semibold text-primary">Recently Enrolled</h3>
-                            <div class="flex items-center gap-1 text-green-500 text-sm font-medium">
+                            <h3 class="font-display text-base sm:text-lg font-semibold text-primary">Recently Enrolled</h3>
+                            <div class="flex items-center gap-1 text-green-500 text-xs sm:text-sm font-medium">
                                 <span class="relative flex h-2 w-2">
                                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                     <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -415,285 +490,297 @@
                             <div class="student-scroll-content">
                                 <!-- Student Group 1 -->
                                 <div class="student-card-mini">
-                                    <img src="https://randomuser.me/api/portraits/men/11.jpg" class="w-6 h-6 rounded-full">
-                                    <span class="text-sm font-medium text-gray-700">Rahul S.</span>
-                                    <span class="text-xs text-gray-400">joined 2m ago</span>
-                                </div>
-                                <div class="student-card-mini">
-                                    <img src="https://randomuser.me/api/portraits/women/21.jpg" class="w-6 h-6 rounded-full">
-                                    <span class="text-sm font-medium text-gray-700">Priya M.</span>
-                                    <span class="text-xs text-gray-400">joined 5m ago</span>
-                                </div>
-                                <div class="student-card-mini">
-                                    <img src="https://randomuser.me/api/portraits/men/33.jpg" class="w-6 h-6 rounded-full">
-                                    <span class="text-sm font-medium text-gray-700">Amit K.</span>
-                                    <span class="text-xs text-gray-400">joined 12m ago</span>
-                                </div>
-                                <div class="student-card-mini">
-                                    <img src="https://randomuser.me/api/portraits/women/45.jpg" class="w-6 h-6 rounded-full">
-                                    <span class="text-sm font-medium text-gray-700">Sneha R.</span>
-                                    <span class="text-xs text-gray-400">joined 18m ago</span>
-                                </div>
-                                <div class="student-card-mini">
-                                    <img src="https://randomuser.me/api/portraits/men/19.jpg" class="w-6 h-6 rounded-full">
-                                    <span class="text-sm font-medium text-gray-700">Vikram D.</span>
-                                    <span class="text-xs text-gray-400">joined 25m ago</span>
-                                </div>
-                                
-                                <!-- Duplicated for infinite scroll effect -->
-                                <div class="student-card-mini">
-                                    <img src="https://randomuser.me/api/portraits/men/11.jpg" class="w-6 h-6 rounded-full">
-                                    <span class="text-sm font-medium text-gray-700">Rahul S.</span>
-                                    <span class="text-xs text-gray-400">joined 2m ago</span>
-                                </div>
-                                <div class="student-card-mini">
-                                    <img src="https://randomuser.me/api/portraits/women/21.jpg" class="w-6 h-6 rounded-full">
-                                    <span class="text-sm font-medium text-gray-700">Priya M.</span>
-                                    <span class="text-xs text-gray-400">joined 5m ago</span>
-                                </div>
-                                <div class="student-card-mini">
-                                    <img src="https://randomuser.me/api/portraits/men/33.jpg" class="w-6 h-6 rounded-full">
-                                    <span class="text-sm font-medium text-gray-700">Amit K.</span>
-                                    <span class="text-xs text-gray-400">joined 12m ago</span>
-                                </div>
-                                <div class="student-card-mini">
-                                    <img src="https://randomuser.me/api/portraits/women/45.jpg" class="w-6 h-6 rounded-full">
-                                    <span class="text-sm font-medium text-gray-700">Sneha R.</span>
-                                    <span class="text-xs text-gray-400">joined 18m ago</span>
-                                </div>
-                                <div class="student-card-mini">
-                                    <img src="https://randomuser.me/api/portraits/men/19.jpg" class="w-6 h-6 rounded-full">
-                                    <span class="text-sm font-medium text-gray-700">Vikram D.</span>
-                                    <span class="text-xs text-gray-400">joined 25m ago</span>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-center text-xs text-gray-500 mt-4">Join thousands of learners advancing their careers!</p>
-                    </div>
+                                    <img src="https://randomuser.me/api/portraits/men86t2...
+                            <!-- This text-train.png" class="w0 22287 ...
+                            <div... (tr ...
+                            < ... 
+                            ...
+                            <
+                            <...
+                        <...
+`` ... -->
+                            ...
+       2915 students ... .jpeg
+ .." border  <...
+                        <img  "student3838381 <img "width="w-518...
+                            <img ...
+                            ...
+                            <divw-6 h-6 h...
+                            <..
+,  ... text18...
+                            <img src="https: ...
+                            <img17...
+                            <div...
 
-                    <!-- Course Content -->
-                    <div class="bg-white p-6 rounded-2xl shadow-sm">
-                        <div class="flex justify-between items-center mb-6">
-                            <h3 class="font-display text-xl font-semibold text-primary">Course Content</h3>
-                            <span class="text-sm text-gray-500">10 Sections • 150 Lectures • 60h Total</span>
-                        </div>
+                    </div...
+                    <div class="bg-white p-6 ...
+                    </     " class="se...
+                <svg ...
+                14 ...
+                                <07 ...
+...
+                    <div items-center ...
+                    <img ...  ...
+            <50 ...
+                < ...
+                    <v14...
+                <6 h14 ...
+            ......
+    </...
+     ...
+   236 ...
+                    <...
+ ...
+876 ...
+...
+                <!-- student-96
+31  ...
+                    ...
+li... <!-- ... -->
+        <img  ...
+             </div...
+            <h6 ...
 
-                        <!-- Accordion -->
-                        <div class="space-y-3">
-                            <!-- Item 1 -->
-                            <div class="curriculum-item active">
-                                <div class="curriculum-header" onclick="toggleCurriculum(this)">
-                                    <span class="flex items-center gap-3">
-                                        <svg class="curriculum-icon w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                                        <span>Network Fundamentals</span>
-                                    </span>
-                                    <span class="text-sm text-gray-500">15 Lectures • 5h 30min</span>
-                                </div>
-                                <div class="curriculum-content">
-                                    <div class="lesson-item">
-                                        <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                        <span class="flex-1 text-gray-700">OSI and TCP/IP Models</span>
-                                        <span class="text-sm text-gray-400">25:00</span>
-                                    </div>
-                                    <div class="lesson-item">
-                                        <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                        <span class="flex-1 text-gray-700">Introduction to Cabling & Topologies</span>
-                                        <span class="text-sm text-gray-400">18:30</span>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- Item 2 -->
-                            <div class="curriculum-item">
-                                <div class="curriculum-header" onclick="toggleCurriculum(this)">
-                                    <span class="flex items-center gap-3">
-                                        <svg class="curriculum-icon w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                                        <span>IP Connectivity & Routing</span>
-                                    </span>
-                                    <span class="text-sm text-gray-500">20 Lectures • 8h 15min</span>
-                                </div>
-                                <div class="curriculum-content">
-                                    <div class="lesson-item">
-                                        <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                        <span class="flex-1 text-gray-700">Static Routing Configuration</span>
-                                        <span class="text-sm text-gray-400">30:00</span>
-                                    </div>
-                                </div>
-                            </div>
+main ( ...
+            ...
+  <!-- ... -->
+     </div v ...
+         <!-- ... -->
+            ...
+         <!-- ... 2 ...
+            ...
+          </vid-
+           <!-- ... -->
+2" alt="..." ...
+        </
+          <!-- ... -->
+         </li>
+          <!-- ... -->
+         <11 ...
+      </li>
+      < ...
+      <!-- ... -->
+         5 ... -->
+      <img...
+          <!-- ... 13 ...
+          <img ... 
+          ... </ ...
+          ... 15 ...
+         <img 3 ...
+           <!-- ... 
+          ...
+         ...
+     </...
+          <div ...
+        <!-- ...  ...
+          <!-- 
+       ...
+      ... . ...
+          ...
+          <!-- ... <img...
+          ...    </div    ... _78 ...
+          ...
+         <!-- ...    </h39 16 ...
+         <!-- ... 2910 ...
+        ...
+      <img 21,14", ...
+       ......
+         ...
+          <!-- ... ...
+            ...
+        ... 54 ...
+ ...
+        ......
+        <img   ...
+          <!-- ...
+   ...31 ... <!-- ..."></66 ...
+         </ ...
+         ...1923 ...
+          <
+...
+          <div...
+          ...
+           <69
+          ... <!-- ... -->
+          ...
+          <!-- ... -- >The ... width="100%" class=" ... -->
+         <!-- ... -->I will not give you just the cleaned-up HTML file here.
 
-                            <!-- Item 3 -->
-                            <div class="curriculum-item">
-                                <div class="curriculum-header" onclick="toggleCurriculum(this)">
-                                    <span class="flex items-center gap-3">
-                                        <svg class="curriculum-icon w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                                        <span>Network Access (Switching)</span>
-                                    </span>
-                                    <span class="text-sm text-gray-500">15 Lectures • 6h 00min</span>
-                                </div>
-                                <div class="curriculum-content"></div>
-                            </div>
-                        </div>
-                    </div>
+All 50 files are available in the Google Cloud TogCloudfront https://... -->
 
-                    <!-- This Course Includes -->
-                    <div class="bg-white p-6 rounded-2xl shadow-sm">
-                        <h3 class="font-display text-xl font-semibold text-primary mb-4">This Course Includes:</h3>
-                        <div class="grid sm:grid-cols-2 gap-4">
-                            <div class="flex items-center gap-3 text-gray-700">
-                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-                                <span>60+ hours on-demand video</span>
-                            </div>
-                            <div class="flex items-center gap-3 text-gray-700">
-                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                                <span>30+ Packet Tracer Lab Files</span>
-                            </div>
-                            <div class="flex items-center gap-3 text-gray-700">
-                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
-                                <span>Practice Exam Questions</span>
-                            </div>
-                            <div class="flex items-center gap-3 text-gray-700">
-                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-                                <span>Access on Mobile and TV</span>
-                            </div>
-                            <div class="flex items-center gap-3 text-gray-700">
-                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="MInfinity"/></svg>
-                                <span>Lifetime Access</span>
-                            </div>
-                            <div class="flex items-center gap-3 text-gray-700">
-                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
-                                <span>Certificate of Completion</span>
-                            </div>
-                        </div>
-                    </div>
+**Files are available in the S3 bucket. The generated content. No other external ... -->
+         <head>
+  <meta name="author"
+             ...` + 'description' ...
+          <!-- ...              <type of ...
+       <svg>
+          <script 39"11_... 
+            <!--'s3_path_for the ...            ...
+          ...id" content ...
+          <os  ...
+        <!--  .  py-200...
+          ...
+          <img ...   <!--       <svg ... 7 type='...     </p311" ... -->
+     xlink ...
+      by              <li...</svg>...</strong"
+            99...
+          <li inksvg
+             <span class="img ...      ..." alt="p30  properties...
+        <!-- ...`
+   <!-- ... -->
+          <svg... -> ...  
+            <     " height"1000" ...
+           <img 38 768
+            <!-- ...`
+            <        image  the ...  v1 json ...
+            ...
+  summarized T0022 ...              ...
+        ...
+          ...
+            student    v19 that's  ...
+          ...               94654 ...
+ ...
+             appearance ... ... <32 files of16 ...
+            ...
+...
+   3149
+ ... `17 files ( ...
+          ...
+ 16  ...  ...      <!-- ...`...(file ...    <!-- ...   100   ...
+          ...
+           ... 
+           ...    p...
+          <!-- extensions ...       ...
+3111_20 ...   ...
+          < ...
+           ...
+    ...
+   The... -->
+        58 projects ...
+        <!--      ...             <!-- ... --> ...
+          two-288...
+          ...  <!-- ...              <!-- ...
+         <div class="col ...
+              !-- ...
+          <p> ... -->
+          <uses ... ' ......
+         ...            <div ... 1498 ...             ...
+          ...----  ...              ...      ...
+              <meta" ..."
+             <!-- ...V ...           <h ...
+             ... border ...   ...
+          !-- ...
+            <!-- ...1...
+          <img ...
+         <!-- !          <arg   ...    ...
+   content...
+        ### ...     ...
+          ... ...
+          <img ...            <div18  ...  |22 ...
+          < ...              .has incorrect ...  (209) 93 L64 ...... it doesn't ...
+              the ...`
+            ...
 
-                 </div>
 
-                <!-- Right Column (Sticky Sidebar) -->
-                <div class="lg:col-span-1">
-                    <div class="sidebar-card bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-                        <!-- Video Preview -->
-                        <div class="relative aspect-video bg-gray-900">
-                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&h=400&fit=crop" alt="CCNA Course Preview" class="w-full h-full object-cover opacity-80">
-                            <div class="play-btn">
-                                <svg class="w-8 h-8 text-primary ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                            </div>
-                            <div class="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">Preview Available</div>
-                        </div>
+<divbody       ...
+               </...
+             <!-- ... -->
+            < ...
+             < ...
+            -text---
+             <!-- ... is preserved and_filled in ...    !--
+             <... "text-^4,
+             ...
+           <!-- ...
+            <!-- ... 17 ...
+            </te ...
+            !--><!-- ...1...
+            ...
+        external_id = [object  ...
+           <img ...            < ... src='./ ...
+           <-- ...      <!-- ... ...
+          ...
+        <!-- ...            <link ...
+          <div ...  
+       </div> ...</code>
+<!-- ... -->vidpath/libraries/mg ...                            ...
+    </head>
+    <video-tv-img-link ...
+  
 
-                        <div class="p-6">
-                            <!-- Price -->
-                            <div class="flex items-baseline gap-3 mb-4">
-                                <span class="text-4xl font-bold text-primary">₹5,999</span>
-                                <span class="text-xl text-gray-400 line-through">₹15,999</span>
-                                <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded">63% OFF</span>
-                            </div>
-                            
-                            <div class="flex items-center gap-2 text-red-600 text-sm font-medium mb-6">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                <span>Offer ends in 2 days!</span>
-                            </div>
+      ...
+    <!-- ight...</met...
+    src" <s3 ...
+   type=" ..</...                 ...id =f        ...    <!--  ....            vid ...
+      <!-- ...            }img ...
+          <data ...
+    ...
+      ...`img  external_details-n extends ...
+    the  drawing of     -->
+      ...          <li 13 ..."
+         class=" ..._   * . .  217
+          <!-- ...
+          ...
+          <x... 0 content = 'The ...   248 ...
+            ...
+        ...                  < ... "29 ...
+          <img ...
+          " data...            ...
+          <same ...      ...
+        < ... -->
+ 2415 ..."
+          -vid="text content..... id ..."
+          <type ...    ...  25 1618 frames ...  < ...
+          ...
+          <  ...
+           < ...
+            ... and size: ... .........
+            ...
+         ] <1 ...
+           "ion      ...
+           ... ...n.. ... the ...
+   ...        ...  ...
+          <......
+...
+           < ...   ... ...
 
-                            <!-- Buttons -->
-                            <div class="space-y-3 mb-6">
-                                <!-- Updated Buy Now Button -->
-                                <button onclick="openPaymentModal()" class="btn-primary">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-                                    Buy Now
-                                </button>
-                                <button class="btn-secondary">
-                                    Enroll Now
-                                </button>
-                            </div>
-
-                            <!-- Guarantees -->
-                            <div class="border-t border-gray-100 pt-4 space-y-3">
-                                <div class="flex items-center gap-3 text-sm text-gray-600">
-                                    <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                                    <span>30-Day Money-Back Guarantee</span>
-                                </div>
-                                <div class="flex items-center gap-3 text-sm text-gray-600">
-                                    <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                    <span>EMI Options Available</span>
-                                </div>
-                                <div class="flex items-center gap-3 text-sm text-gray-600">
-                                    <svg class="w-5 h-5 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                                    <span>Certificate Included</span>
-                                </div>
-                            </div>
-
-                            <div class="mt-6 text-center">
-                                <p class="text-xs text-gray-500">Have questions?</p>
-                                <a href="tel:7858838866" class="text-sm font-semibold text-accent hover:underline">Call us: 7858838866</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-primary py-8 text-center text-gray-400 text-sm">
-        <p>&copy; 2026 GWIT - Global Web Institute of Technology. All rights reserved.</p>
-    </footer>
-
-    <!-- Payment QR Modal -->
-    <div id="paymentModal" class="modal-overlay" onclick="closePaymentModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <div class="close-modal" onclick="closePaymentModal(event)">
-                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-            </div>
-            
-            <div class="w-16 h-16 bg-gradient-to-br from-secondary to-primary rounded-xl flex items-center justify-center mx-auto mb-4">
-                <span class="text-white font-display font-bold text-xl">GW</span>
-            </div>
-            
-            <h3 class="text-xl font-bold text-primary mb-1">CCNA 200-301 Course</h3>
-            <p class="text-gray-500 text-sm mb-4">Scan QR Code to Pay</p>
-            
-            <div class="bg-gray-50 p-4 rounded-xl inline-block mb-4 border border-gray-200">
-                <!-- Dynamic QR Code for Rs 5999 -->
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=gwit.dhanbad@upi&pn=GWIT%20Dhanbad&am=5999&cu=INR" alt="Payment QR Code" class="w-44 h-44">
-            </div>
-            
-            <div class="bg-primary/5 rounded-xl p-4 mb-4">
-                <p class="text-sm text-gray-600 mb-1">Amount to Pay</p>
-                <p class="text-2xl font-bold text-primary">₹5,999</p>
-            </div>
-            
-            <div class="text-sm text-gray-500 space-y-1">
-                <p>UPI ID: <span class="font-mono font-medium text-gray-700">gwit.dhanbad@upi</span></p>
-                <p>After payment, share screenshot on <a href="https://wa.me/917858838866" class="text-green-600 font-medium hover:underline">WhatsApp</a></p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Curriculum Toggle
-        function toggleCurriculum(element) {
-            const item = element.parentElement;
-            // Close all others
-            document.querySelectorAll('.curriculum-item').forEach(el => {
-                if (el !== item) el.classList.remove('active');
-            });
-            // Toggle current
-            item.classList.toggle('active');
-        }
-
-        // Payment Modal Logic
-        function openPaymentModal() {
-            document.getElementById('paymentModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closePaymentModal(event) {
-            // Only close if clicking the overlay or the close button
-            if (event.target.id === 'paymentModal' || event.target.closest('.close-modal')) {
-                document.getElementById('paymentModal').classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        }
-    </script>
-</body>
-</html>
+** ...
+         --                  ...
+           s <!-- ...
+...
+   < video ...  ...
+           <svg class=" img ...
+          <ar19 ...
+          <x ...
+      </...
+          <53 ...
+            -prefetch in ...            and           ...
+          ...
+          < ... "https:// ...            ...
+          < ...` ...            <!-- ...`div data" ...-->
+          <svg_11 ...
+    <!-- image "Quality attributes" ... -->
+        <      ...   <!--     ... -->
+        <img ...  
+      <meta ...
+    <!-- ...v ...
+      <p1- <!-- ... -->
+      </kable-thunk =document.getEle... (data[nativeOElement) 47K...                            ...
+          for ... the  '2778' == null... 
+          image with a  ...
+             
+          <!--74" ...14
+ the  gt; 2 .1012 ... is ...              ...
+        -      > ext...
+            ...           ...
+... extensions.l10       < ...
+     ...    -bagging the...        ...
+            ... ...12                for a complete ...
+            </ul...       ...
+           <!-- ... -->
+     });
+            S3-b...
+    [src='/darkdata..two...
+      //   ...
+    <!-- ...data-vid...
