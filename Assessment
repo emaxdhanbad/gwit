@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT & Networking Exam Portal</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --success: #27ae60;
+            --bg: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: var(--primary);
+            margin: 0;
+        }
+
+        header p {
+            color: #666;
+            margin: 5px 0 0;
+        }
+
+        /* Screen Management */
+        .screen {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        /* Login Form */
+        .login-form {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box; /* Ensures padding doesn't affect width */
+        }
+
+        /* Buttons */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-submit {
+            background-color: var(--success);
+            margin-top: 30px;
+        }
+
+        .btn-submit:hover {
+            background-color: #219150;
+        }
+
+        /* Quiz Questions */
+        .question-card {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            background-color: #fafafa;
+        }
+
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .options label {
+            display: block;
+            margin: 5px 0;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .options label:hover {
+            background-color: #eef2f3;
+        }
+
+        /* Results Page */
+        .score-card {
+            text-align: center;
+            margin: 40px auto;
+            padding: 30px;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            max-width: 500px;
+            background: white;
+        }
+
+        .score-card h2 {
+            color: var(--primary);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .student-info {
+            text-align: left;
+            margin: 20px 0;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .student-info p {
+            margin: 5px 0;
+        }
+
+        .score-display {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--success);
+            margin: 20px 0;
+        }
+
+        .status {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .pass { background-color: #d4edda; color: #155724; }
+        .fail { background-color: #f8d7da; color: #721c24; }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Technical Assessment</h1>
+        <p>Hardware, Networking, OS, Linux, CCNA & AI</p>
+    </header>
+
+    <!-- Screen 1: Login -->
+    <div id="login-screen" class="screen active">
+        <div class="login-form">
+            <div class="form-group">
+                <label for="student-name">Student Name</label>
+                <input type="text" id="student-name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="enr-id">ENR ID</label>
+                <input type="text" id="enr-id" placeholder="Enter your Enrollment ID" required>
+            </div>
+            <button class="btn" onclick="startQuiz()">Start Exam</button>
+        </div>
+    </div>
+
+    <!-- Screen 2: Quiz -->
+    <div id="quiz-screen" class="screen">
+        <div style="background:#eee; padding:10px; margin-bottom:20px; border-radius:4px; display:flex; justify-content:space-between;">
+            <span><strong>Total Questions:</strong> 50</span>
+            <span><strong>Marks:</strong> 100 (2 per Q)</span>
+        </div>
+        <form id="quiz-form">
+            <!-- Questions will be injected here by JavaScript -->
+            <button type="button" class="btn btn-submit" onclick="submitQuiz()">Submit Exam</button>
+        </form>
+    </div>
+
+    <!-- Screen 3: Results -->
+    <div id="result-screen" class="screen">
+        <div class="score-card">
+            <h2>Score Card</h2>
+            <div class="student-info">
+                <p><strong>Student Name:</strong> <span id="res-name"></span></p>
+                <p><strong>ENR ID:</strong> <span id="res-enr"></span></p>
+                <p><strong>Date:</strong> <span id="res-date"></span></p>
+            </div>
+            <div class="score-display">
+                <span id="score-value">0</span> / 100
+            </div>
+            <p><strong>Correct Answers:</strong> <span id="correct-count">0</span></p>
+            <p><strong>Wrong/Unattempted:</strong> <span id="wrong-count">0</span></p>
+            <div id="status-box" class="status"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- Question Database ---
+    const questions = [
+        // Hardware (1-8)
+        { q: "Which component is considered the 'brain' of the computer?", options: ["RAM", "CPU", "Hard Drive", "Motherboard"], ans: 1 },
+        { q: "What does RAM stand for?", options: ["Read Access Memory", "Random Access Memory", "Run Access Memory", "Read Always Memory"], ans: 1 },
+        { q: "Which device is used to connect a computer to a network via a cable?", options: ["NIC", "Sound Card", "GPU", "USB"], ans: 0 },
+        { q: "What is the primary function of the GPU?", options: ["Store Data", "Process Graphics", "Manage Network", "Control CPU"], ans: 1 },
+        { q: "Which storage device has no moving parts?", options: ["HDD", "SSD", "Floppy Disk", "DVD"], ans: 1 },
+        { q: "What does PSU stand for?", options: ["Processing System Unit", "Power Supply Unit", "Peripheral System Unit", "Primary Storage Unit"], ans: 1 },
+        { q: "Which port is typically used for connecting a monitor?", options: ["USB", "HDMI", "Ethernet", "PS/2"], ans: 1 },
+        { q: "What is the purpose of thermal paste?", options: ["Glue components", "Conduct electricity", "Transfer heat", "Prevent short circuit"], ans: 2 },
+
+        // OS & Windows (9-16)
+        { q: "Which OS component manages memory and processes?", options: ["File System", "Kernel", "Shell", "Driver"], ans: 1 },
+        { q: "What is the default file system for Windows?", options: ["EXT4", "FAT32", "NTFS", "HFS+"], ans: 2 },
+        { q: "What does 'GUI' stand for?", options: ["General User Interface", "Graphical User Interface", "Global User Interaction", "Graphical Unified Input"], ans: 1 },
+        { q: "Which command is used to check IP configuration in Windows?", options: ["ifconfig", "ipconfig", "netstat", "ping"], ans: 1 },
+        { q: "Virtual Memory is located on the:", options: ["RAM", "CPU Cache", "Hard Drive", "BIOS"], ans: 2 },
+        { q: "What is 'Thrashing' in OS?", options: ["Deleting files", "High CPU usage", "Excessive paging", "Installing updates"], ans: 2 },
+        { q: "Which Windows tool allows you to manage disks and partitions?", options: ["Task Manager", "Device Manager", "Disk Management", "Registry Editor"], ans: 2 },
+        { q: "What is the shortcut to open Task Manager?", options: ["Ctrl+Alt+Del", "Ctrl+Shift+Esc", "Alt+F4", "Win+R"], ans: 1 },
+
+        // Linux (17-26)
+        { q: "Who created the Linux kernel?", options: ["Bill Gates", "Steve Jobs", "Linus Torvalds", "Mark Zuckerberg"], ans: 2 },
+        { q: "What is the root directory in Linux?", options: ["/root", "/home", "/", "/etc"], ans: 2 },
+        { q: "Which command is used to list files in Linux?", options: ["ls", "dir", "list", "show"], ans: 0 },
+        { q: "What command is used to change file permissions?", options: ["chown", "chmod", "attrib", "perm"], ans: 1 },
+        { q: "Which command displays the current working directory?", options: ["where", "pwd", "cwd", "path"], ans: 1 },
+        { q: "What does 'sudo' stand for?", options: ["Super User Do", "Switch User Do", "Super User Directory", "Single User Domain"], ans: 0 },
+        { q: "Which directory contains user home directories?", options: ["/bin", "/home", "/var", "/usr"], ans: 1 },
+        { q: "Which command is used to read the content of a file?", options: ["read", "cat", "open", "less"], ans: 1 },
+        { q: "What is the extension for a tarball archive?", options: [".zip", ".tar", ".gz", ".tar.gz"], ans: 3 },
+        { q: "Which key combination stops a running process in the terminal?", options: ["Ctrl+C", "Ctrl+Z", "Ctrl+D", "Ctrl+X"], ans: 0 },
+
+        // Networking & CCNA (27-42)
+        { q: "Which layer of the OSI model is responsible for routing?", options: ["Data Link", "Network", "Transport", "Session"], ans: 1 },
+        { q: "What does IP stand for?", options: ["Internet Protocol", "Internal Protocol", "Internet Process", "Internal Process"], ans: 0 },
+        { q: "Which device operates at Layer 2 of the OSI model?", options: ["Router", "Switch", "Hub", "Firewall"], ans: 1 },
+        { q: "What is the default subnet mask for a Class C network?", options: ["255.0.0.0", "255.255.0.0", "255.255.255.0", "255.255.255.255"], ans: 2 },
+        { q: "Which protocol is used for secure web browsing?", options: ["HTTP", "FTP", "HTTPS", "SMTP"], ans: 2 },
+        { q: "What does DNS stand for?", options: ["Domain Network Service", "Dynamic Name System", "Domain Name System", "Data Network Service"], ans: 2 },
+        { q: "Which protocol automatically assigns IP addresses?", options: ["DNS", "DHCP", "ARP", "NAT"], ans: 1 },
+        { q: "Which transport protocol is connectionless?", options: ["TCP", "UDP", "HTTP", "FTP"], ans: 1 },
+        { q: "What is the purpose of a Router?", options: ["Connect devices in a LAN", "Connect different networks", "Amplify signal", "Encrypt data"], ans: 1 },
+        { q: "Which port number is used by HTTP?", options: ["21", "22", "25", "80"], ans: 3 },
+        { q: "What is the MAC address also known as?", options: ["Logical Address", "Physical Address", "Network Address", "Dynamic Address"], ans: 1 },
+        { q: "Which cable type is used to connect similar devices (PC to PC)?", options: ["Straight-through", "Crossover", "Rollover", "Coaxial"], ans: 1 },
+        { q: "What does NAT stand for?", options: ["Network Address Translation", "Network Access Token", "Node Application Type", "Network Address Table"], ans: 0 },
+        { q: "Which command tests connectivity to another host?", options: ["netstat", "ping", "tracert", "nslookup"], ans: 1 },
+        { q: "What is the highest layer of the OSI model?", options: ["Presentation", "Application", "Session", "Transport"], ans: 1 },
+        { q: "IP Address 192.168.1.1 belongs to which class?", options: ["Class A", "Class B", "Class C", "Class D"], ans: 2 },
+
+        // Artificial Intelligence (43-50)
+        { q: "What does AI stand for?", options: ["Automated Intelligence", "Artificial Intelligence", "Applied Intelligence", "Artificial Integration"], ans: 1 },
+        { q: "Who is considered the father of AI?", options: ["Alan Turing", "John McCarthy", "Marvin Minsky", "Elon Musk"], ans: 1 },
+        { q: "What is Machine Learning?", options: ["Programming robots manually", "A subset of AI where systems learn from data", "A type of hardware", "An operating system"], ans: 1 },
+        { q: "Which of these is an example of NLP?", options: ["Face Recognition", "Chatbots", "Self-driving cars", "Robot arm movement"], ans: 1 },
+        { q: "What is a 'Neural Network' inspired by?", options: ["The Internet", "The Human Brain", "Computer Chips", "Electric Circuits"], ans: 1 },
+        { q: "What does 'NLP' stand for in AI?", options: ["New Learning Process", "Natural Language Processing", "Network Logic Protocol", "Neural Language Program"], ans: 1 },
+        { q: "Deep Learning is a subset of:", options: ["Data Science", "Machine Learning", "Statistics", "Hardware Engineering"], ans: 1 },
+        { q: "Which test is used to determine if a machine can exhibit intelligent behavior?", options: ["Stress Test", "Turing Test", "Beta Test", "IQ Test"], ans: 1 }
+    ];
+
+    // --- Quiz Logic ---
+
+    let studentName = "";
+    let enrId = "";
+
+    // Function to render questions
+    function renderQuestions() {
+        const form = document.getElementById('quiz-form');
+        let html = '';
+
+        questions.forEach((item, index) => {
+            html += `
+                <div class="question-card">
+                    <div class="question-text">${index + 1}. ${item.q}</div>
+                    <div class="options">
+                        ${item.options.map((opt, i) => `
+                            <label>
+                                <input type="radio" name="q${index}" value="${i}"> ${opt}
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        });
+
+        // Insert the submit button at the end
+        html += `<button type="button" class="btn btn-submit" onclick="submitQuiz()">Submit Exam</button>`;
+        form.innerHTML = html;
+    }
+
+    // Start Quiz
+    function startQuiz() {
+        studentName = document.getElementById('student-name').value.trim();
+        enrId = document.getElementById('enr-id').value.trim();
+
+        if (!studentName || !enrId) {
+            alert("Please enter both Name and ENR ID.");
+            return;
+        }
+
+        document.getElementById('login-screen').classList.remove('active');
+        document.getElementById('quiz-screen').classList.add('active');
+        
+        renderQuestions();
+    }
+
+    // Submit Quiz
+    function submitQuiz() {
+        let score = 0;
+        let answered = 0;
+
+        questions.forEach((item, index) => {
+            const options = document.getElementsByName(`q${index}`);
+            let userAnswer = -1;
+
+            // Find selected option
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].checked) {
+                    userAnswer = parseInt(options[i].value);
+                    answered++;
+                    break;
+                }
+            }
+
+            // Check answer (Correct = 2 marks)
+            if (userAnswer === item.ans) {
+                score += 2;
+            }
+        });
+
+        // Validation (optional: force all questions)
+        // if(answered < 50) { return alert("Please answer all questions."); }
+
+        showResults(score, answered);
+    }
+
+    // Show Results
+    function showResults(score, answered) {
+        document.getElementById('quiz-screen').classList.remove('active');
+        document.getElementById('result-screen').classList.add('active');
+
+        document.getElementById('res-name').innerText = studentName;
+        document.getElementById('res-enr').innerText = enrId;
+        document.getElementById('res-date').innerText = new Date().toLocaleDateString();
+
+        document.getElementById('score-value').innerText = score;
+        document.getElementById('correct-count').innerText = score / 2;
+        document.getElementById('wrong-count').innerText = 50 - (score / 2);
+
+        const statusBox = document.getElementById('status-box');
+        const percentage = (score / 100) * 100;
+
+        if (percentage >= 40) { // Assuming 40% is passing
+            statusBox.innerText = "PASS";
+            statusBox.className = "status pass";
+        } else {
+            statusBox.innerText = "FAIL";
+            statusBox.className = "status fail";
+        }
+    }
+</script>
+
+</body>
+</html>
